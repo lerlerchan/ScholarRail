@@ -95,3 +95,17 @@ NEXT: `/export-bib` flow + bib-format unit tests (needs Semantic Scholar key), P
 - CritiqueBot implemented as Claude Code agent `~/.claude/agents/critiquebot.md` (4 attack modes, JSON verdict block, bounded single-shot). Different model family from generator per §6.1. **API/n8n variant deferred: no ANTHROPIC_API_KEY provisioned on K45VD/n8n yet.**
 - Tests: 3 unit + 1 live integration (ingest source under citation-key filename → grounded draft → zero citations outside pool; DeepSeek v4-pro, ~4min). All green.
 - Running totals: 12 unit + 5 integration tests green.
+
+## Intake decisions (2026-07-19)
+- `mochow13/google-scholar-mcp`: **REJECTED** — SkillSpector static scan (LLM tier off, no key): risk 100/100 CRITICAL. Known-vulnerable @modelcontextprotocol/sdk 1.11, unpinned deps, TM1 parameter-abuse hits. Also moot: Google blocks scraping from this IP regardless of wrapper. Clone kept at `~/scholarstack/candidate-google-scholar-mcp` for reference.
+- Scholar Gateway (docs.scholargateway.ai): Wiley-only corpus (8M articles, 2000+ journals), MCP `semantic_search` at connector.scholargateway.ai/mcp, OAuth 2.1 institutional/trial. **Complement, not replacement** for Semantic Scholar (coverage). Claude-side connector exists in harness — needs interactive user auth. Candidate for Stage 1 as secondary retrieval source.
+- notebooklm-py upstream identified: github.com/teng-lin/notebooklm-py — cloned to `~/scholarstack/notebooklm-py` (not yet integrated; MarkItDown remains primary ingestion).
+
+## Phase 5 status (2026-07-19) — UTILITIES DONE, PIPELINE BLOCKED
+- tectonic 0.16.9 installed to `~/.local/bin` (static musl binary, no sudo). PDF compile verified by test.
+- `~/scholarstack/llm.py` — shared DeepSeek chat helper.
+- `~/scholarstack/revise.py` — Revision Mode §7.2: draft → draft_vN.md, never overwrites, preserves [@key] citations by prompt contract, audited.
+- `~/scholarstack/tldr.py` — TL;DR §7.1: file/URL → MarkItDown → 5 bullets on v4-flash.
+- `~/scholarstack/consistency_check.py` — §6.2: docs → contradiction JSON on v4-flash, pass/fail exit code, audited. Live test caught planted n=42 vs n=60 + alpha contradiction.
+- Tests now 15 unit + 7 integration, all green.
+- **BLOCKED:** manuscript pipeline stages 5–10 — `scholarstack-pipeline` MIT fork still does not exist on GitHub (release blocker §11). Nothing to build against.
