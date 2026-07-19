@@ -87,3 +87,11 @@ NEXT: `/export-bib` flow + bib-format unit tests (needs Semantic Scholar key), P
 - Ops finding: Ollama bge-m3 cold-load exceeds LightRAG's 60s embed worker timeout → `EMBEDDING_TIMEOUT=180` in `.env`. LightRAG dedups identical content across filenames (409-like failure) — test content must be unique per run.
 - All tests green: 9 unit (offline) + 4 integration (live) across 3 suites.
 - Deferred: notebooklm-py path (fork repo missing; MarkItDown is the working ingestion path).
+
+## Phase 4 status (2026-07-19) — CORE DONE
+- PaperSpine V4 (WUBING2023) cloned + `paper-spine` skill installed to `~/.claude/skills/` — it is now ONE orchestration skill with playbooks + gate scripts, hosts incl. Claude Code and Hermes CLI. Argument layer outputs live in `paper_rewriting_output/`: `confirmed_contribution.md` (V4 hard gate), `confirmed_motivation.md`, `rewrite_matrix.md` (= PRD's "section blueprints").
+- `~/scholarstack/load_spine.py` — /load-spine handoff: PaperSpine outputs → context JSON; enforces contribution-before-drafting gate.
+- `~/scholarstack/draft_section.py` — Stage 4 drafting: LightRAG `only_need_context` retrieval → deepseek-v4-pro draft → **mechanical** post-check that every `[@key]` citation ∈ verified pool; exit 1 on violation (Ralph loop decides re-draft). Convention: `[@key]` citation markers.
+- CritiqueBot implemented as Claude Code agent `~/.claude/agents/critiquebot.md` (4 attack modes, JSON verdict block, bounded single-shot). Different model family from generator per §6.1. **API/n8n variant deferred: no ANTHROPIC_API_KEY provisioned on K45VD/n8n yet.**
+- Tests: 3 unit + 1 live integration (ingest source under citation-key filename → grounded draft → zero citations outside pool; DeepSeek v4-pro, ~4min). All green.
+- Running totals: 12 unit + 5 integration tests green.
