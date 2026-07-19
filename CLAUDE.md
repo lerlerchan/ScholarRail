@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Start here
+
+**New session? Read `docs/HANDOFF.md` first** — cold-start guide: file map, verification commands, gotchas, design invariants, TODO. Implementation status lives in `plan/implementation-plan.md`.
+
 ## What this repo is
 
 Documentation-only planning repo for **ScholarStack** — a postgraduate research pipeline (raw topic → Scopus-ready manuscript with verified citations). No code, no build, no tests here. The single source of truth is `docs/scholarstack-prd-v2.0.md`.
