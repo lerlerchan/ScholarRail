@@ -22,6 +22,7 @@
 | v1.6 addendum | 2026-07-15 | OpenDraft analysis: Citation Verification Gate, Expose Mode, TL;DR Tool, Revision Mode + versioning; 19-agent architecture rejected |
 | **v2.0** | **2026-07-19** | **Full consolidation of all above into one document; addendum features promoted to core; Hermes Agent front-door added as Under Evaluation (§13)** |
 | v2.0.1 | 2026-07-19 | Citation Verification Gate: DataCite added to resolver chain (empirical finding during Phase 2 implementation — arXiv DOIs missed by CrossRef+OpenAlex) |
+| v2.0.2 | 2026-07-20 | Product renamed **ScholarStack → ScholarRail** (name-collision review; ScholarRail is globally unique on GitHub, free on PyPI). Repos: github.com/lerlerchan/ScholarRail + scholarrail-pipeline. "ScholarStack" below is the historical name — read as ScholarRail. |
 
 ---
 

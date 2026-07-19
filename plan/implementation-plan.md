@@ -115,11 +115,11 @@ NEXT: `/export-bib` flow + bib-format unit tests (needs Semantic Scholar key), P
 - Local repo `~/scholarstack/scholarstack-pipeline` (git, MIT, commit f195597): `stages.py` (7 draft-stage prompt templates + peer-review sim), `pipeline.py` (~150-line runner: LightRAG-grounded per stage, mechanical [@key]-in-pool gate with bounded re-draft MAX=2 then hard fail, human confirmation gates unless --auto, audit-logged, pandoc→tectonic assembly).
 - pandoc 3.10 installed to ~/.local/bin (static, no sudo).
 - Tests: 3 unit (incl. full offline run → real PDF) + 1 live single-stage — all green. Totals now 18 unit + 8 integration.
-- TODO before public release: extract shared modules from ~/scholarstack into the package (currently sys.path import), pyproject, push to github.com/lerlerchan/scholarstack-pipeline (user creates repo).
+- TODO before public release: extract shared modules from ~/scholarstack into the package (currently sys.path import), pyproject, push to github.com/lerlerchan/scholarrail-pipeline (user creates repo).
 - Scopus APIs (dev.elsevier.com): free academic non-commercial tier with API key — strong Stage 1 + verification candidate for SUC FEIT; **Phase 2 paid cloud would need commercial license**. User signup required.
 
 ## Publication + chain entry (2026-07-19) — DONE
-- `github.com/lerlerchan/scholarstack-pipeline` created via API + pushed (MIT, pyproject, Semgrep CI: p/secrets p/python p/owasp-top-ten).
+- `github.com/lerlerchan/scholarrail-pipeline` created via API + pushed (MIT, pyproject, Semgrep CI: p/secrets p/python p/owasp-top-ten).
 - `~/scholarstack/scholarstack.py` — single `/scholarstack` entry per PRD §5 standing rule: verify → ingest → Gate 2.5 → spine → pipeline → consistency → PDF. Each gate short-circuits with exit 1; integrity non-skippable. 3 unit tests green (gate short-circuits + happy path).
 - Totals: 21 unit + 8 integration green.
 - Still user-side: Semantic Scholar key, Scopus key, Scholar Gateway auth, ANTHROPIC_API_KEY for n8n CritiqueBot, n8n workflow wiring, Telegram router (blocked on n8n webhooks existing).

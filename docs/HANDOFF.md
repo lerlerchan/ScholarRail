@@ -1,4 +1,6 @@
-# ScholarStack — Implementation Handoff
+# ScholarRail — Implementation Handoff
+
+> **Rename note (2026-07-20):** product renamed ScholarStack → **ScholarRail**. GitHub repos renamed (old URLs redirect). Local paths (`~/scholarstack/`, `scholarstack.py`, `~/github/ScholarStack/`) keep the old name — renaming live paths breaks nothing-worth-fixing; treat the names as synonyms.
 
 **Written:** 2026-07-19, end of the session that built Phases 1–5.
 **Audience:** any future Claude instance (Opus, Sonnet, or other) or human developer picking this up cold. Assumes zero prior session context. Read this + `plan/implementation-plan.md` + the PRD before touching anything.
@@ -15,8 +17,8 @@ Two repos + one deployment directory:
 
 | Location | What | Git remote |
 |---|---|---|
-| `~/github/ScholarStack` | Docs, PRD, plan, this handoff. **No code.** | github.com/lerlerchan/ScholarStack |
-| `~/scholarstack/scholarstack-pipeline` | Manuscript pipeline (stages 4–10), MIT | github.com/lerlerchan/scholarstack-pipeline |
+| `~/github/ScholarStack` | Docs, PRD, plan, this handoff. **No code.** | github.com/lerlerchan/ScholarRail |
+| `~/scholarstack/scholarstack-pipeline` | Manuscript pipeline (stages 4–10), MIT | github.com/lerlerchan/scholarrail-pipeline |
 | `~/scholarstack/` | Deployment: all glue scripts, venv, clones, logs. **Not a git repo** (contains `.env` with API key — never commit it) | none |
 
 Key files in `~/scholarstack/` (all have tests in `~/scholarstack/tests/`):
