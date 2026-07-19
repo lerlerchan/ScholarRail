@@ -68,7 +68,7 @@ BLOCKED / USER ACTION:
 - Google Scholar scraping blocked from this IP (`MaxTriesExceededException`) — Open Issue #2 confirmed; Semantic Scholar is primary path.
 - Semantic Scholar public API 429s without key → **apply for free API key** (semanticscholar.org/product/api#api-key-form).
 - GitHub forks missing: `scholarstack-pipeline` (release blocker), `notebooklm-py` — create before Phase 4. MarkItDown covers ingestion meanwhile.
-- Upstreams provided 2026-07-19: PaperSpine = github.com/WUBING2023/PaperSpine (paper: arxiv.org/abs/2604.05018); academic-research-skills = github.com/imbad0202/academic-research-skills (CC-BY-NC — reference only, never wire into pipeline; MIT fork `scholarstack-pipeline` must replace it pre-release).
+- Upstreams provided 2026-07-19: PaperSpine = github.com/WUBING2023/PaperSpine (paper: arxiv.org/abs/2604.05018); academic-research-skills = github.com/imbad0202/academic-research-skills (CC-BY-NC — reference only, never wire into pipeline; MIT fork `scholarstack-pipeline` must replace it pre-release); OpenDraft = github.com/federicodeponte/opendraft (rejected 19-agent architecture, comparison reference only); LightRAG = github.com/hkuds/lightrag (installed via pip `lightrag-hku[api]`).
 - License email to academic-research-skills author still unsent (§11).
 
 NEXT: `/export-bib` flow + bib-format unit tests (needs Semantic Scholar key), Phase 3 ingestion bridge.
