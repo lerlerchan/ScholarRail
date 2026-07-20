@@ -129,3 +129,10 @@ NEXT: `/export-bib` flow + bib-format unit tests (needs Semantic Scholar key), P
 - Package extraction done: `scholarrail_pipeline/` (citations, llm, stages, pipeline) — self-contained, editable-installed into K45VD venv; glue scripts import `scholarrail_pipeline.citations`; chain invokes `python -m scholarrail_pipeline.pipeline`. CI now runs full unit suite. 21 unit tests green post-refactor.
 - sdist + wheel built (`dist/scholarrail_pipeline-0.1.0*`).
 - **PyPI published 2026-07-20:** `scholarrail-pipeline` 0.1.0 (real package) + `scholarrail` 0.0.1 (name-reservation stub). Token in `~/.pypirc` (600). Token was pasted in chat → rotate at pypi.org and update `~/.pypirc`.
+
+## Intake decision: academic-literature-mining-skill (2026-07-20) — REJECTED
+- `Ruisi-Lu/academic-literature-mining-skill` (Rust CLI, Apache-2.0, NVIDIA Nemotron + Qdrant, Crossref/OpenAlex/arXiv discovery). Cloned to `~/scholarstack/candidate-academic-literature-mining-skill`.
+- SkillSpector static scan: 59/100, HIGH severity.
+- **Disqualifying finding, independent of score:** `SKILL.md` lines 19-22 embed an instruction directing any installing agent to read specific files under an unrelated path (`~/Project/visual-encoding-vs-raw-iot-reasoning`) — a prompt-injection-shaped payload targeting whatever agent installs the skill. Not acted on. Flagged to user.
+- Also a stack mismatch even setting security aside: Rust/Cargo/Docker/NVIDIA-API vs ScholarStack's Python/LightRAG pipeline — no capability gain over the existing CrossRef→DataCite→OpenAlex chain to justify a second runtime.
+- Repo kept locally for reference only, per the CC-BY-NC clean-room convention (never wire content in, never treat as source of truth for design).
