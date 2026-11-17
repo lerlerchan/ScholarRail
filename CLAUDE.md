@@ -15,7 +15,7 @@ The actual components live in separate repos (LightRAG, scholarstack-pipeline, c
 ## Working on the PRD
 
 - The PRD is versioned by consolidation: v2.0 supersedes v1.0–v1.6 + addendum. New decisions go into the existing v2.0 file (bump Version History table), not new sidecar docs.
-- Every new feature must state which LLM tier it runs on (`deepseek-v4-flash` / `deepseek-v4-pro` / `claude-sonnet-4-6` / Ollama local) — cost-consciousness is a standing design constraint.
+- Every new feature must state which LLM tier it runs on (`deepseek-flash` / `deepseek-flash` / `claude-sonnet-4-6` / Ollama local) — cost-consciousness is a standing design constraint.
 - Integrity checks are non-skippable by design; don't propose flows that bypass the Citation Verification Gate, integrity gates, or Ethics Hard Stop.
 - Rejected tools (TokenTamer, LLM-Wiki-for-n8n, OpenDraft's 19-agent architecture) are documented in §3 with reasons — don't re-propose without new evidence.
 
@@ -25,3 +25,11 @@ The actual components live in separate repos (LightRAG, scholarstack-pipeline, c
 - **Adversarial separation:** CritiqueBot deliberately uses a different model family (Claude) than the generator (DeepSeek). Keep that separation in any pipeline change.
 - **Verification is mechanical where possible:** Citation Verification Gate uses CrossRef + OpenAlex APIs with no LLM call; Ethics Hard Stop is a rule-based n8n filter. Don't convert these to LLM judgment.
 - Open issues and under-evaluation items (Hermes front door vs thin Telegram router) are tracked in §13–§14 — update there, not in chat only.
+
+## Obsidian vault context
+
+Prior research, decisions, and notes across all projects live in `~/ObsidianVault`. Before answering questions this repo's own docs/code don't cover, grep it first:
+```bash
+grep -ril "<keyword>" ~/ObsidianVault --include="*.md" | head -20
+```
+Check `02-knowledge/` (curated notes) and `04-resources/` (sourced material) first — `00-inbox/` is untriaged raw saves. If grep misses a conceptual query, use the `vault-lookup` skill (semantic fallback).

@@ -76,13 +76,13 @@ An integrated open-source research pipeline that takes a postgraduate student fr
 
 | Role | Model | Notes |
 |---|---|---|
-| Primary drafting | `deepseek-v4-pro` | Stages 4–10 manuscript work |
-| Entity extraction / light tasks | `deepseek-v4-flash` | LightRAG graph build |
+| Primary drafting | `deepseek-flash` | Stages 4–10 manuscript work |
+| Entity extraction / light tasks | `deepseek-flash` | LightRAG graph build |
 | Adversarial critique | `claude-sonnet-4-6` (Anthropic API) | Deliberately a *different* model family from the generator |
 | Scoping / TL;DR / offline fallback | Ollama (local, K45VD) | Expose Mode and cheap utilities run local |
 
 - User-supplied API keys. Estimated **$0.48–$1.20 per full paper run** on DeepSeek vs $15–40 on Claude.
-- Legacy DeepSeek model aliases deprecated 2026-07-24 — use only `deepseek-v4-flash` / `deepseek-v4-pro` strings.
+- Legacy DeepSeek model aliases deprecated 2026-07-24 — use only `deepseek-flash` / `deepseek-flash` strings.
 - Cost-consciousness is a standing design constraint: every new feature must state which model tier it runs on.
 
 ---
@@ -121,7 +121,7 @@ Stage 1.5 — Source Ingestion
 
 Stage 2 — Knowledge Graph Build
   /load-refs → session.bib + summaries → LightRAG insert
-  LightRAG → entity extraction (deepseek-v4-flash) → PostgreSQL
+  LightRAG → entity extraction (deepseek-flash) → PostgreSQL
 
 [INTEGRITY GATE 2.5 — Ralph loop]
   integrity-agent → citation coverage, hallucinated-ref check
@@ -132,7 +132,7 @@ Stage 3 — Argument Structuring
   /load-spine → blueprint into pipeline context
 
 Stage 4 — Literature Review Draft
-  scholarstack-pipeline Stages 1–3 → LightRAG-grounded draft (deepseek-v4-pro)
+  scholarstack-pipeline Stages 1–3 → LightRAG-grounded draft (deepseek-flash)
 
 [INTEGRITY GATE 4.5 — Ralph loop]
   integrity-agent → citation format, coherence, plagiarism signals
@@ -141,7 +141,7 @@ Stage 4 — Literature Review Draft
 
 Stages 5–10 — Manuscript Development
   scholarstack-pipeline Stages 4–10 → methodology, results, discussion,
-  abstract, peer-review simulation, LaTeX output (deepseek-v4-pro)
+  abstract, peer-review simulation, LaTeX output (deepseek-flash)
   + CritiqueBot Claim–Evidence Alignment (abstract)
   + CritiqueBot Scope + Rejection Risk (post-venue-selection)
 
@@ -301,7 +301,7 @@ pip install markitdown[all] --break-system-packages
 
 # 3. LightRAG
 pip install "lightrag-hku[api]" --break-system-packages
-# .env: LLM_MODEL=deepseek-v4-flash, LLM_BINDING=openai,
+# .env: LLM_MODEL=deepseek-flash, LLM_BINDING=openai,
 #       OPENAI_API_KEY=<DEEPSEEK_API_KEY>, OPENAI_BASE_URL=https://api.deepseek.com,
 #       EMBEDDING_MODEL=BAAI/bge-m3
 lightrag-server &   # localhost:9621
@@ -314,7 +314,7 @@ claude mcp add semantic-scholar -s user -- uvx \
 
 # 5. Keys
 echo "DEEPSEEK_API_KEY=sk-..." >> ~/.env
-echo "DEEPSEEK_DEFAULT_MODEL=deepseek-v4-flash" >> ~/.env
-echo "DEEPSEEK_REASONING_MODEL=deepseek-v4-pro" >> ~/.env
+echo "DEEPSEEK_DEFAULT_MODEL=deepseek-flash" >> ~/.env
+echo "DEEPSEEK_REASONING_MODEL=deepseek-flash" >> ~/.env
 # ANTHROPIC_API_KEY as n8n credential (CritiqueBot)
 ```

@@ -22,7 +22,7 @@ notebooklm-py + MarkItDown, `nlm_to_lightrag.py` bridge, `/load-refs`, integrity
 - Functionality: Gate 2.5 exit-condition tests (gap → FAIL+list; complete → PASS).
 
 ## Phase 4 — Argument & Drafting (Stages 3–4 + Gate 4.5)
-PaperSpine `/load-spine`, scholarstack-pipeline stages 1–3 (deepseek-v4-pro), CritiqueBot Logic+Evidence.
+PaperSpine `/load-spine`, scholarstack-pipeline stages 1–3 (deepseek-flash), CritiqueBot Logic+Evidence.
 - Unit: blueprint parsing, prompt assembly, CritiqueBot verdict schema.
 - Integration: draft with zero citations outside verified pool.
 - Functionality: full Stage 0→4 run; CritiqueBot bounded-loop termination.
@@ -57,7 +57,7 @@ Router bot → n8n webhooks with JSON schemas. That contract doubles as future H
 ## Phase 1 status (2026-07-19)
 DONE:
 - `~/scholarstack` skeleton, `.venv` with lightrag-hku[api] + markitdown[all] + pytest.
-- LightRAG server running on :9621 — deepseek-v4-flash LLM, Ollama `bge-m3` embeddings (note: Ollama model name is `bge-m3`, NOT `BAAI/bge-m3`), file storage. `.env` at `~/scholarstack/.env` (chmod 600).
+- LightRAG server running on :9621 — deepseek-flash LLM, Ollama `bge-m3` embeddings (note: Ollama model name is `bge-m3`, NOT `BAAI/bge-m3`), file storage. `.env` at `~/scholarstack/.env` (chmod 600).
 - Integration tests green: `~/scholarstack/tests/test_lightrag_roundtrip.py` (health + insert→query round-trip, ~69s, requires `file_source` field and unique source name per run).
 - Manglish retrieval probe passed (single sample — Open Issue #1 preliminary OK).
 - MCPs registered user-scope: `semantic-scholar` (uvx), `google-scholar` (local venv `.venv-scholar-mcp`).
@@ -91,7 +91,7 @@ NEXT: `/export-bib` flow + bib-format unit tests (needs Semantic Scholar key), P
 ## Phase 4 status (2026-07-19) — CORE DONE
 - PaperSpine V4 (WUBING2023) cloned + `paper-spine` skill installed to `~/.claude/skills/` — it is now ONE orchestration skill with playbooks + gate scripts, hosts incl. Claude Code and Hermes CLI. Argument layer outputs live in `paper_rewriting_output/`: `confirmed_contribution.md` (V4 hard gate), `confirmed_motivation.md`, `rewrite_matrix.md` (= PRD's "section blueprints").
 - `~/scholarstack/load_spine.py` — /load-spine handoff: PaperSpine outputs → context JSON; enforces contribution-before-drafting gate.
-- `~/scholarstack/draft_section.py` — Stage 4 drafting: LightRAG `only_need_context` retrieval → deepseek-v4-pro draft → **mechanical** post-check that every `[@key]` citation ∈ verified pool; exit 1 on violation (Ralph loop decides re-draft). Convention: `[@key]` citation markers.
+- `~/scholarstack/draft_section.py` — Stage 4 drafting: LightRAG `only_need_context` retrieval → deepseek-flash draft → **mechanical** post-check that every `[@key]` citation ∈ verified pool; exit 1 on violation (Ralph loop decides re-draft). Convention: `[@key]` citation markers.
 - CritiqueBot implemented as Claude Code agent `~/.claude/agents/critiquebot.md` (4 attack modes, JSON verdict block, bounded single-shot). Different model family from generator per §6.1. **API/n8n variant deferred: no ANTHROPIC_API_KEY provisioned on K45VD/n8n yet.**
 - Tests: 3 unit + 1 live integration (ingest source under citation-key filename → grounded draft → zero citations outside pool; DeepSeek v4-pro, ~4min). All green.
 - Running totals: 12 unit + 5 integration tests green.

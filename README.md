@@ -14,7 +14,7 @@ AI writing tools invent references. ScholarRail's answer is structural, not hope
 2. **Ingest** — sources convert via MarkItDown into the LightRAG knowledge graph (bge-m3 embeddings, DeepSeek entity extraction).
 3. **Gate 2.5** — coverage check: every verified citation must have an ingested source; every ingested source must be verified.
 4. **Structure** — [PaperSpine](https://github.com/WUBING2023/PaperSpine) confirms the contribution and section blueprint; drafting cannot start without it.
-5. **Draft** — the [manuscript pipeline](https://github.com/lerlerchan/scholarrail-pipeline) writes each section grounded in retrieved graph context (`deepseek-v4-pro`), with a per-stage citation check (bounded re-draft, then hard fail). CritiqueBot (Claude — deliberately a different model family) attacks logic and evidence.
+5. **Draft** — the [manuscript pipeline](https://github.com/lerlerchan/scholarrail-pipeline) writes each section grounded in retrieved graph context (`deepseek-flash`), with a per-stage citation check (bounded re-draft, then hard fail). CritiqueBot (Claude — deliberately a different model family) attacks logic and evidence.
 6. **Deliver** — cross-document consistency check, then pandoc + tectonic compile `paper.pdf`. Revisions always create `draft_vN+1`, never overwrite.
 
 One command chains it all: `python scholarstack.py <workdir>`.
