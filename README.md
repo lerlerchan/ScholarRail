@@ -21,6 +21,14 @@ AI writing tools invent references. ScholarRail's answer is structural, not hope
 
 One command chains it all: `python scholarstack.py <workdir>`.
 
+## Demo
+
+The Citation Verification Gate on a three-entry bibliography: two real papers pass, one invented DOI is rejected (`not_found`) and the chain halts.
+
+<video src="docs/demo.mp4" controls width="720"></video>
+
+[Download the video](docs/demo.mp4) · [Step-by-step walkthrough](docs/DEMO.md). The video replays real `citation_verifier.py` output; drafting stages are not shown because they need LightRAG and API keys.
+
 ## Components
 
 | Component | Role | License |
