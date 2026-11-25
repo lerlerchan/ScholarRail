@@ -52,6 +52,12 @@ Revisions always create `draft_vN+1`; nothing is overwritten.
 - **You:** pick the topic, curate `session.bib`, supply sources, confirm the contribution, approve each stage.
 - **ScholarRail:** blocks fake references, keeps drafts grounded, logs every gate, builds the PDF.
 
+## Full pipeline run (2026-11-25)
+
+[scholarrail-full-pipeline-demo.mp4](scholarrail-full-pipeline-demo.mp4) replays a real run on four open-access RAG papers (`demo-run/`): citation gate 4/4, Gate 2.5, seven sections each passing its citation check, peer-review simulation, an 11-page PDF, consistency check. Every gate result in the video is a real line from `logs/audit.jsonl`.
+
+Honest caveats: the consistency check was re-run on its own after a model-routing fix, so the video joins two runs; the PDF still shows raw `[@key]` markers with no bibliography and doubled headings; drafting used `deepseek-flash` routed through a LiteLLM proxy to OpenRouter.
+
 ## Not shown here
 
-Stages 2+ need a running LightRAG server and paid API keys (DeepSeek, Anthropic), so they are described, not demonstrated. n8n wiring and the Telegram front door are not built yet.
+Public users run the pipeline from the command line (no n8n needed). An n8n research-library workflow exists on the author's own n8n instance; n8n orchestration of the pipeline and the Telegram front door are not built yet.

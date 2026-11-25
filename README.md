@@ -23,11 +23,21 @@ One command chains it all: `python scholarstack.py <workdir>`.
 
 ## Demo
 
-The Citation Verification Gate on a three-entry bibliography: two real papers pass, one invented DOI is rejected (`not_found`) and the chain halts.
+### Full pipeline run
+
+Four open-access RAG papers through every stage: verify, ingest, Gate 2.5, seven drafted sections with per-section citation checks, peer-review simulation, PDF, consistency check. All gates pass. The PDF is rough (raw `[@key]` markers, no bibliography yet).
+
+<video src="docs/full-pipeline.mp4" controls width="720"></video>
+
+[Download the video](docs/full-pipeline.mp4) · [Sample PDF](docs/sample-paper.pdf). A replay of real output from 2026-11-25; the final consistency check was re-run separately after a model-routing fix.
+
+### Citation gate only
+
+Two real papers pass, one invented DOI is rejected (`not_found`) and the chain halts.
 
 <video src="docs/demo.mp4" controls width="720"></video>
 
-[Download the video](docs/demo.mp4) · [Step-by-step walkthrough](docs/DEMO.md). The video replays real `citation_verifier.py` output; drafting stages are not shown because they need LightRAG and API keys.
+[Download the video](docs/demo.mp4) · [Step-by-step walkthrough](docs/DEMO.md)
 
 ## Components
 
