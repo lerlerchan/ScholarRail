@@ -1,5 +1,7 @@
 # ScholarRail
 
+[Website](https://scholarrail.staff-bot.com) · [Manuscript pipeline](https://github.com/lerlerchan/scholarrail-pipeline) · [License: AGPL-3.0](LICENSE) · [Privacy](PRIVACY.md)
+
 An open-source research pipeline that takes a postgraduate student from **raw topic** to **Scopus-ready manuscript** — with mechanically verified citations, non-skippable integrity gates, and a full audit trail. Human decision-making stays at the center; the pipeline accelerates the grunt work.
 
 ![System architecture](docs/architecture.svg)
@@ -54,8 +56,16 @@ python3 setup_keys.py   # from the scholarstack-pipeline repo
 
 ## Status
 
-Phases 1–5 implemented and tested on the reference deployment (29 tests: 21 unit + 8 integration, all green). Remaining: n8n orchestration wiring, Telegram front door. See `plan/implementation-plan.md`.
+Phases 1–5 implemented and tested on the reference deployment (29 tests: 21 unit + 8 integration; the 8 integration tests need a running LightRAG server on `localhost:9621`). Remaining: n8n orchestration wiring, Telegram front door. See `plan/implementation-plan.md`.
+
+## Hosted plans (draft)
+
+A free self-hosted core plus optional paid Cloud tiers is the planned shape. The pricing on the website is a **draft preview; Cloud plans do not exist yet**. The integrity gates stay on in every tier.
+
+## Privacy
+
+The software runs on your machine and has no telemetry. Data leaves only to the providers you configure (DeepSeek, Anthropic, CrossRef/DataCite/OpenAlex, Semantic Scholar/Scopus). Details: [PRIVACY.md](PRIVACY.md).
 
 ## License
 
-AGPL-3.0 (project). Component licenses listed above.
+[GNU AGPL-3.0](LICENSE) for this project. The manuscript pipeline and the components listed above carry their own licenses (mostly MIT).
